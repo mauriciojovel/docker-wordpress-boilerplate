@@ -62,15 +62,13 @@ add_action( 'wp_enqueue_scripts', 'client_theme_bootstrap_scripts' );
 function client_theme_bootstrap_scripts() {
 	// We will add our jquery version
 	wp_deregister_script('jquery');
-	// wp_enqueue_style( 'bootstrap', get_template_directory_uri() . '/assets/css/bootstrap/bootstrap.min.css' );
+	
 	wp_enqueue_style( 'client-theme-bootstrap-style', get_stylesheet_uri() );
 	wp_enqueue_style( 'theme-css', get_template_directory_uri() . '/assets/css/main.css' );
-	//wp_enqueue_style( 'client-theme-bootstrap-main', get_template_directory_uri() . '/assets/css/main.css' );
 	
-	//wp_enqueue_script( 'client-theme-bootstrap-script' , get_template_directory_uri() . '/assets/js/main.js', array(), '20171116', true );
 	wp_enqueue_script('jquery', get_template_directory_uri() . '/assets/js/jquery/jquery-3.2.1.min.js', array(), false, true);
 	wp_enqueue_script('popper', get_template_directory_uri() . '/assets/js/popper/popper.min.js', array('jquery'), false, true);
-	wp_enqueue_script('js-bootstrap', get_template_directory_uri() . '/assets/js/bootstrap/bootstrap.min.js', array('jquery', 'popper'), false, true);
+	wp_enqueue_script('js-bootstrap', get_template_directory_uri() . '/assets/js/bootstrap/bootstrap.bundle.min.js', array('jquery', 'popper'), false, true);
 }
 
 /**
@@ -78,27 +76,27 @@ function client_theme_bootstrap_scripts() {
  *
  * @link https://developer.wordpress.org/themes/functionality/sidebars/#registering-a-sidebar
  */
-add_action( 'widgets_init', 'claps_widgets_init' );
-function claps_widgets_init() {
-	register_sidebar( array(
-		'name'          => esc_html__( 'Footer spot 1', 'client-theme-bootstrap' ),
-		'id'            => 'footer-1',
-		'description'   => esc_html__( 'Add widgets here.', 'client-theme-bootstrap' ),
-		'before_widget' => '<section id="%1$s" class="widget %2$s">',
-		'after_widget'  => '</section>',
-		'before_title'  => '<h4 class="widget__title">',
-		'after_title'   => '</h4>',
-	) );
-	register_sidebar( array(
-		'name'          => esc_html__( 'Footer spot 2', 'client-theme-bootstrap' ),
-		'id'            => 'footer-2',
-		'description'   => esc_html__( 'Add widgets here.', 'client-theme-bootstrap' ),
-		'before_widget' => '<section id="%1$s" class="widget %2$s">',
-		'after_widget'  => '</section>',
-		'before_title'  => '<h4 class="widget__title">',
-		'after_title'   => '</h4>',
-	) );
-}
+// add_action( 'widgets_init', 'client_theme_widgets_init' );
+// function client_theme_widgets_init() {
+// 	register_sidebar( array(
+// 		'name'          => esc_html__( 'Footer spot 1', 'client-theme-bootstrap' ),
+// 		'id'            => 'footer-1',
+// 		'description'   => esc_html__( 'Add widgets here.', 'client-theme-bootstrap' ),
+// 		'before_widget' => '<section id="%1$s" class="widget %2$s">',
+// 		'after_widget'  => '</section>',
+// 		'before_title'  => '<h4 class="widget__title">',
+// 		'after_title'   => '</h4>',
+// 	) );
+// 	register_sidebar( array(
+// 		'name'          => esc_html__( 'Footer spot 2', 'client-theme-bootstrap' ),
+// 		'id'            => 'footer-2',
+// 		'description'   => esc_html__( 'Add widgets here.', 'client-theme-bootstrap' ),
+// 		'before_widget' => '<section id="%1$s" class="widget %2$s">',
+// 		'after_widget'  => '</section>',
+// 		'before_title'  => '<h4 class="widget__title">',
+// 		'after_title'   => '</h4>',
+// 	) );
+// }
 
 // Adding bootstrap menu class
 add_filter('nav_menu_css_class','atg_menu_classes',1,3);
@@ -397,4 +395,5 @@ class WPDocs_Walker_Nav_Menu extends Walker_Nav_Menu {
     }
 }
 
+// Create your own activation plugin on: http://tgmpluginactivation.com/download/
 require_once get_template_directory() . '/activation/plugins.php';

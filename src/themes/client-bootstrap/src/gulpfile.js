@@ -13,19 +13,17 @@ var concat = require('gulp-concat');
 // Config variables
 var config = {
   styles: {
-    input: './src/sass/**/*.scss',
+    input: './sass/**/*.scss',
     output: '../assets/css'
   },
   scripts: {
     input: [
-      'node_modules/bootstrap/dist/js/bootstrap.bundle.js',
-      './src/js/*.js'
+      './js/*.js'
     ],
     output: '../assets/js'
   },
   sass: {
     errLogToConsole: true,
-    includePaths: ['node_modules'],
     outputStyle: 'compressed'
   },
   autoprefixer: {
@@ -61,6 +59,12 @@ gulp.task('js', function () {
     .pipe(sourcemaps.write('/maps'))
     //.pipe(concat('all.js'))
     .pipe(gulp.dest(config.scripts.output));
+});
+
+// Dev
+gulp.task('dev', ['styles', 'js'], function() {
+  gulp.watch(config.styles.input, ['styles']);
+  gulp.watch(config.scripts.input, ['js']);
 });
 
 
