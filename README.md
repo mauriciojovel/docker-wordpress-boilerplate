@@ -62,6 +62,7 @@ mysql> FLUSH PRIVILEGES ;
 
 # Customize your theme.
 Of course the most important part is customize the theme to you can use it, so follow the next step to start your changes.
+
 1. Choose your theme name and rename the folder client-bootstrap for your name.
 2. Change in the docker-compose.yml the name of your theme in the npm-cli service.
 3. Use [Plugin activation generator](http://tgmpluginactivation.com/download/) to create your own pluging activation and put all your required plugins there.
