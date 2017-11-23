@@ -93,3 +93,9 @@ project
 │   docker-compose.yml
 │   README.md
 ```
+
+## Changing url
+If you need change the url of the project you can execute the follow command (only valid for linux):
+```bash
+$ sed -i 's/localhost:8080/your-awesome-site.com/g' database.sql
+```
