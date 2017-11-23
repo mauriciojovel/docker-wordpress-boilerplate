@@ -95,8 +95,19 @@ project
 │   README.md
 ```
 
-## Changing url
+# Changing url
 If you need change the url of the project you can execute the follow command (only valid for linux):
 ```bash
 $ sed -i 's/localhost:8080/your-awesome-site.com/g' database.sql
 ```
+
+# Using BrowserSync
+Browser Sync is a service that will help us to make the development quickly so this project support use it, but you need to do the next step:
+
+1. You need to configure in your host a name to access to your local ip (for example: local.dev).
+2. You need modified that name in the follow places:
+
+    * docker-compose.yml: In the npm-cli you need to change the name link for you development name.
+    * in the gulpfile: You need modified to your custom name.
+
+3. If you need to use a diffent port you need to configurate your ngnix machine to use it, the most important thing is the docker network should be access to the same machine like in localhost.
