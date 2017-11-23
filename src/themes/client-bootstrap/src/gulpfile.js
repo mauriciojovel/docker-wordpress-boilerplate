@@ -10,8 +10,12 @@ var uglify = require('gulp-uglify');
 var buffer = require('gulp-buffer');
 var concat = require('gulp-concat');
 
+var browserSync = require('browser-sync').create();
+
 // Config variables
 var config = {
+  localUrl: 'http://local.dev',
+  host: 'local.dev',
   styles: {
     input: './sass/**/*.scss',
     output: '../assets/css'
@@ -21,6 +25,9 @@ var config = {
       './js/*.js'
     ],
     output: '../assets/js'
+  },
+  php : {
+    input: '../php/**/*.php' 
   },
   sass: {
     errLogToConsole: true,
@@ -43,7 +50,8 @@ gulp.task('styles', function () {
     .pipe(sass(config.sass).on('error', sass.logError))
     .pipe(autoprefixer(config.autoprefixer))
     .pipe(sourcemaps.write('/maps'))
-    .pipe(gulp.dest(config.styles.output));
+    .pipe(gulp.dest(config.styles.output))
+    .pipe(browserSync.stream());
 });
 
 // JS
@@ -58,7 +66,8 @@ gulp.task('js', function () {
     .pipe(uglify())
     .pipe(sourcemaps.write('/maps'))
     //.pipe(concat('all.js'))
-    .pipe(gulp.dest(config.scripts.output));
+    .pipe(gulp.dest(config.scripts.output))
+    .pipe(browserSync.stream());
 });
 
 // Dev
@@ -66,6 +75,15 @@ gulp.task('dev', ['styles', 'js'], function() {
   gulp.watch(config.styles.input, ['styles']);
   gulp.watch(config.scripts.input, ['js']);
 });
+
+gulp.task('serve', ['styles', 'js'], function() {
+      browserSync.init({
+          proxy: config.localUrl
+      });
+      gulp.watch(config.styles.input, ['styles']);
+      gulp.watch(config.scripts.input, ['js']);
+      gulp.watch(config.php.input).on('change', browserSync.reload);
+  });
 
 
 gulp.task('default', ['styles', 'js']);

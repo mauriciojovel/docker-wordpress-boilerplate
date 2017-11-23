@@ -37,10 +37,11 @@ services:
   npm-cli:
     build: ./docker/node
     links:
-      - nginx
+      - nginx:local.dev
     ports:
       - 3000:3000
       - 3001:3001
     volumes:
       - ./src/themes/client-bootstrap/src:/app
       - ./src/themes/client-bootstrap/assets:/assets
+      - ./src/themes/client-bootstrap:/php
