@@ -61,12 +61,17 @@ mysql> FLUSH PRIVILEGES ;
 8. [Unconfirmed](https://wordpress.org/plugins/unconfirmed/)
 
 # Customize your theme.
+## Manual.
 Of course the most important part is customize the theme to you can use it, so follow the next step to start your changes.
 
 1. Choose your theme name and rename the folder client-bootstrap for your name.
 2. Change in the docker-compose.yml the name of your theme in the npm-cli service.
 3. Use [Plugin activation generator](http://tgmpluginactivation.com/download/) to create your own pluging activation and put all your required plugins there.
 4. Rename all the references to the *ClientBootstrap* or *client_bootstrap* or *client-boostrap* for your new theme name.
+
+## Automatic.
+1. Execute the command create-theme.sh under the directory: *src/themes*.
+2. That's all friends :)
 
 # Folder Structure.
 ```
