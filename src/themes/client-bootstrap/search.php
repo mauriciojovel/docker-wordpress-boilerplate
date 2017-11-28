@@ -4,7 +4,7 @@
  *
  * @link https://developer.wordpress.org/themes/basics/template-hierarchy/#search-result
  *
- * @package ClientThemeBootstrap
+ * @package __php_package__
  */
 
 get_header(); ?>

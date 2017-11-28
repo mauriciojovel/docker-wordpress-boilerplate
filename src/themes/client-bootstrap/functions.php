@@ -4,7 +4,7 @@
  *
  * @link https://developer.wordpress.org/themes/basics/theme-functions/
  *
- * @package ClientThemeBootstrap
+ * @package __php_package__
  */
 
 add_action( 'after_setup_theme', 'client_theme_bootstrap_setup' );
@@ -76,7 +76,7 @@ function client_theme_bootstrap_scripts() {
 	
 	wp_enqueue_script('jquery', $jqueryPathUrl, array(), filemtime($jqueryPath), true);
     wp_enqueue_script('js-bootstrap', $bootstrapBundlePathUrl, array('jquery'), filemtime($bootstrapBundlePath), true);
-    wp_enqueue_script('theme-js', $themejsUrl, array('jquery', 'js-bootstrap'), filemtime($themejsPath), true);
+    wp_enqueue_script('client-theme-bootstrap-theme-js', $themejsUrl, array('jquery', 'js-bootstrap'), filemtime($themejsPath), true);
 }
 
 /**
@@ -84,8 +84,8 @@ function client_theme_bootstrap_scripts() {
  *
  * @link https://developer.wordpress.org/themes/functionality/sidebars/#registering-a-sidebar
  */
-// add_action( 'widgets_init', 'client_theme_widgets_init' );
-// function client_theme_widgets_init() {
+// add_action( 'widgets_init', 'client_theme_bootstrap_widgets_init' );
+// function client_theme_bootstrap_widgets_init() {
 // 	register_sidebar( array(
 // 		'name'          => esc_html__( 'Footer spot 1', 'client-theme-bootstrap' ),
 // 		'id'            => 'footer-1',
@@ -107,8 +107,8 @@ function client_theme_bootstrap_scripts() {
 // }
 
 // Adding bootstrap menu class
-add_filter('nav_menu_css_class','atg_menu_classes',1,3);
-function atg_menu_classes($classes, $item, $args) {
+add_filter('nav_menu_css_class','client_theme_bootstrap_menu_classes',1,3);
+function client_theme_bootstrap_menu_classes($classes, $item, $args) {
 	$class = array();
 	if($args->theme_location == 'primary') {
 		$class[] = 'nav-item';
@@ -124,15 +124,15 @@ function atg_menu_classes($classes, $item, $args) {
 	return $class;
 }
 
-add_filter('nav_menu_submenu_css_class', 'theme_menu_submenu_css', 1, 3);
-function theme_menu_submenu_css($classes, $args, $depth) {
+add_filter('nav_menu_submenu_css_class', 'client_theme_bootstrap_menu_submenu_css', 1, 3);
+function client_theme_bootstrap_menu_submenu_css($classes, $args, $depth) {
 	$classes[] = 'dropdown-menu';
 	return $classes;
 }
 
 
-add_filter( 'nav_menu_link_attributes', 'My_Theme_nav_menu_link_atts', 10, 4 );
-function My_Theme_nav_menu_link_atts( $atts, $item, $args, $depth ) {
+add_filter( 'nav_menu_link_attributes', 'client_theme_bootstrap_nav_menu_link_atts', 10, 4 );
+function client_theme_bootstrap_nav_menu_link_atts( $atts, $item, $args, $depth ) {
 	$atts['class'] = 'nav-link';
 	if(in_array('menu-item-has-children', $item->classes)) {
 		$atts['class'] = $atts['class'].' dropdown-toggle';
