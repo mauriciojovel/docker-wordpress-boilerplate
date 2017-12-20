@@ -94,3 +94,5 @@ akismet
 !**/assets/js/jquery/**/*.js.map
 !**/assets/js/bootstrap/**/*.js
 !**/assets/js/bootstrap/**/*.js.map
+wordpress/**
+!wordpress/.gitkeep

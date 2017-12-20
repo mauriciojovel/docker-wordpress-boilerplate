@@ -6,6 +6,7 @@ services:
       - dbmysql:mysql
     volumes:
       - ./src:/var/www/html/wp-content
+      - ./wordpress:/var/www/html
     environment:
       WORDPRESS_DB_USER: wordpress
       WORDPRESS_DB_PASSWORD: wordpress
