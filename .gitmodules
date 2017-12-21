@@ -4,3 +4,6 @@
 [submodule "src/plugins/acf-cf7"]
 	path = src/plugins/acf-cf7
 	url = https://github.com/taylormsj/acf-cf7.git
+[submodule "src/plugins/acf-user-role-field-setting"]
+	path = src/plugins/acf-user-role-field-setting
+	url = git@github.com:Hube2/acf-user-role-field-setting.git
